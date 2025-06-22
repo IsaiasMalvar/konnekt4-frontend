@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import Board from "./components/Board";
+import Board from "../components/Board";
 
 import {
   type Cell,
   type MatchState,
   type PlayableMark,
   type Player,
-} from "./types/types";
-import { VictoryValidator } from "./logic/VictoryValidator";
-import VictoryBoard from "./components/VictoryBoard";
+} from "../types/types";
+import { VictoryValidator } from "../logic/VictoryValidator";
+import VictoryBoard from "../components/VictoryBoard";
 import { Link, useLocation, useParams } from "react-router";
-import { useOnlineGame } from "./hooks/useOnlineGame";
-import { context } from "./contexts/useMatchContext";
-import TransitionalScreen from "./components/TransitionalScreen";
+import { useOnlineGame } from "../hooks/useOnlineGame";
+import { context } from "../contexts/useMatchContext";
+import TransitionalScreen from "../components/TransitionalScreen";
 
 const GameRoomPage = (): React.ReactElement => {
   const {

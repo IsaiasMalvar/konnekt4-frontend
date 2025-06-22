@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
-import LobbyRoomCard from "./components/LobbyRoomCard";
-import { context } from "./contexts/useMatchContext";
-import { useJoinServer } from "./hooks/useJoinServer";
-import TransitionalScreen from "./components/TransitionalScreen";
+import LobbyRoomCard from "../components/LobbyRoomCard";
+import { context } from "../contexts/useMatchContext";
+import { useJoinServer } from "../hooks/useJoinServer";
+import TransitionalScreen from "../components/TransitionalScreen";
 
 const LobbyPage = (): React.ReactElement => {
   const { availableRooms, setOnline, online } = context();
