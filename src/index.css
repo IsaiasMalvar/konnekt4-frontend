@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import "tailwindcss";
+
+@layer utilities {
+  .beach-bg {
+    background: #b4773a;
+    background: linear-gradient(
+      90deg,
+      rgba(180, 119, 58, 1) 0%,
+      rgba(253, 115, 29, 1) 50%,
+      rgba(252, 176, 69, 1) 100%
+    );
+  }
+  .font-lucky {
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .font-shantell-sans {
+    font-family: "Shantell Sans", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "BNCE" 0, "INFM" 0, "SPAC" 0;
+  }
+
+  .move-around {
+    animation: random-move 5s infinite ease-in-out;
+  }
+
+  @keyframes random-move {
+    0% {
+      transform: translate(0%, 0%);
+    }
+    25% {
+      transform: translate(-10%, 15%);
+    }
+    50% {
+      transform: translate(20%, -10%);
+    }
+    75% {
+      transform: translate(-15%, -5%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }
+}

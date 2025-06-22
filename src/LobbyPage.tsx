@@ -1,0 +1,65 @@
+import { useNavigate } from "react-router";
+import LobbyRoomCard from "./components/LobbyRoomCard";
+import { context } from "./contexts/useMatchContext";
+import { useJoinServer } from "./hooks/useJoinServer";
+import TransitionalScreen from "./components/TransitionalScreen";
+
+const LobbyPage = (): React.ReactElement => {
+  const { availableRooms, setOnline, online } = context();
+  useJoinServer();
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen h-screen overflow-y-scroll overflow-x-hidden sm:overflow-hidden flex flex-col justify-around items-center beach-bg gap-2 relative">
+      <div className="absolute w-[50%] h-[50%] blur-3xl bg-amber-300/50 bottom-0 left-50 move-around overflow-hidden"></div>
+      <div className="absolute w-[20%] h-[50%] blur-3xl bg-cyan-300/65 top-0 right-0 z-10 move-around overflow-hidden"></div>
+      <div className="absolute w-[50%] h-[50%] blur-3xl bg-amber-300/50 top-0 left-0 move-around overflow-hidden"></div>
+      <div className="absolute w-[20%] h-[50%] blur-3xl bg-cyan-300/65 bottom-0 right-50 z-10 move-around overflow-hidden"></div>
+      <header className="w-full flex justify-center items-center mt-4">
+        <img
+          src="/header.png"
+          className="w-[70%] sm:w-[50%] md:w-[35%]  -rotate-6 cursor-pointer"
+          onClick={() => {
+            setOnline(false);
+            navigate("/lobby");
+          }}
+        />
+      </header>
+      {online ? (
+        <div className="flex justify-center items-center w-full z-20">
+          {availableRooms.length < 1 && (
+            <div className="absolute top-0 left-0 w-full h-full bg-white/30 backdrop-blur-2xl flex flex-col justify-center items-center">
+              {" "}
+              <TransitionalScreen />{" "}
+            </div>
+          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 w-[70%]  gap-10 p-5 h-screen sm:h-auto">
+            {availableRooms.map((room) => (
+              <LobbyRoomCard id={room} key={room} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="w-[50%] z-30 flex-col  rounded-2xl h-[40%] p-2 gap-2 text-orange-500 text-xl font-lucky bg-white/30 backdrop-blur-2xl flex justify-around items-center">
+          <button
+            onClick={() => setOnline(true)}
+            className="border border-white hover:bg-amber-400/50 w-full h-full cursor-pointer  text-center flex justify-center items-center p-2 rounded-2xl"
+          >
+            <span className="text-3xl sm:text-5xl">ONLINE</span>
+          </button>
+          <button
+            onClick={() => {
+              setOnline(false);
+              navigate("/room/local");
+            }}
+            className="border border-white hover:bg-amber-400/50 w-full h-full cursor-pointer  text-center flex justify-center items-center p-2 rounded-2xl"
+          >
+            <span className="text-3xl sm:text-5xl">LOCAL</span>
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default LobbyPage;
