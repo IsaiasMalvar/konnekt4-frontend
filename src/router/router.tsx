@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate, type RouteObject } from "react-router";
-import LobbyPage from "../LobbyPage";
-import GameRoomPage from "../GameRoomPage";
+import LobbyPage from "../pages/LobbyPage";
+import GameRoomPage from "../pages/GameRoomPage";
 
 const routes: RouteObject[] = [
   {
