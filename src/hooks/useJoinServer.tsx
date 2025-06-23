@@ -7,10 +7,11 @@ import { context } from "../contexts/useMatchContext";
 export const useJoinServer = () => {
   const { setAvailableRooms, online } = context();
   const stompClientRef = useRef<Client | null>(null);
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     if (online) {
-      const socket = new SockJS("http://localhost:8080/ws");
+      const socket = new SockJS(serverUrl);
       const stompClient = new Client({
         webSocketFactory: () => socket,
         reconnectDelay: 5000,
