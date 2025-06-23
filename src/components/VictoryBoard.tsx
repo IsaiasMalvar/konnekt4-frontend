@@ -40,19 +40,28 @@ const VictoryBoard = ({
   };
 
   return (
-    <div className="w-[20rem] h-[20rem] sm:h-[30rem] sm:w-[30rem] flex flex-col justify-end items-center gap-10 mt-10">
-      <img src={victoryAvatar} className="w-[50%]" />
-      <h1 className="text-6xl text-orange-700 uppercase font-lucky -rotate-12  text-center">
-        {victoryPlayer} has won!
+    <div className="w-full flex flex-col justify-center items-center gap-10 mt-10">
+      <div className="bg-black grow-tall w-[10rem] h-[10rem] absolute top-0 left-0" />
+      <div className="bg-black grow-tall w-[10rem] h-[10rem] absolute top-0 right-0" />
+      <div className="bg-black grow-tall w-[10rem] h-[10rem] absolute bottom-0 left-0" />
+      <div className="bg-black grow-tall w-[10rem] h-[10rem] absolute bottom-0 right-0" />
+      <div className="bg-black grow-wide  w-[10rem] h-[10rem] absolute top-0 left-0" />
+      <div className="bg-black grow-wide  w-[10rem] h-[10rem] absolute top-0 right-0" />
+      <div className="bg-black grow-wide  w-[10rem] h-[10rem] absolute bottom-0 left-0" />
+      <div className="bg-black grow-wide  w-[10rem] h-[10rem] absolute bottom-0 right-0" />
+
+      <h1 className="text-4xl sm:text-6xl text-white uppercase font-lucky  text-center bg-black p-5 z-10">
+        VICTORY - {victoryPlayer}
       </h1>
 
-      <button
-        className="active:scale-90 hover:bg-orange-700 hover:text-amber-200 flex justify-center items-center transition-all duration-100 cursor-pointer bg-amber-200 w-[40%] 
-         rounded-4xl border-orange-700 p-5  font-bold text-orange-700"
+      <div
+        className=" bg-black sm:w-[50%] w-[100%]  z-10 flex justify-center items-center"
         onClick={onClick}
       >
-        <span className="text-xl text-center sm:text-2xl">REMATCH!</span>
-      </button>
+        <button className="active:scale-90 text-xl text-center sm:text-2xl text-white border-4 border-white p-5 cursor-pointer">
+          REMATCH
+        </button>
+      </div>
     </div>
   );
 };
