@@ -24,7 +24,7 @@ const Board = ({
 
   return (
     <div
-      className={`grid grid-cols-7  p-4  w-[20rem] h-[20rem] sm:h-[30rem] sm:w-[30rem] border-b-8 border-amber-950 `}
+      className={`grid grid-cols-7  p-4 min-[10rem]:w-[22rem] min-[10rem]:h-[22rem]  w-[25rem] h-[25rem] sm:h-[30rem] sm:w-[30rem] border-b-8 border-amber-950 `}
     >
       {grid.map((_, i) => (
         <BoardCell
