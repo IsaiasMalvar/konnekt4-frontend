@@ -142,12 +142,7 @@ const GameRoomPage = (): React.ReactElement => {
 
   return (
     <div className="h-screen flex flex-col justify-around items-center beach-bg gap-2 relative overflow-hidden ">
-      {(!isTwoPlayersOnlineOrLocal || isEmpty) && (
-        <div className="absolute top-0 left-0 w-full h-full bg-white/30 backdrop-blur-2xl flex flex-col justify-center items-center">
-          {" "}
-          <TransitionalScreen />{" "}
-        </div>
-      )}
+      {(!isTwoPlayersOnlineOrLocal || isEmpty) && <TransitionalScreen />}
       <audio src="/yay.mp3" ref={ref2} />
       <audio src="/M-V.mp3" ref={ref} />
 
