@@ -49,7 +49,6 @@ const GameRoomPage = (): React.ReactElement => {
   );
 
   const [victory, setVictory] = useState<boolean>(false);
-  const [isSongPlaying, setIsSongPlaying] = useState<boolean>(false);
   const [hoverMarkState, setHoverMarkState] = useState<PlayableMark>("P00");
 
   const ref = useRef<HTMLAudioElement>(null);
@@ -74,49 +73,11 @@ const GameRoomPage = (): React.ReactElement => {
     row,
   };
 
-  const currentPlayerAvatar = online
-    ? matchState.player === "P1"
-      ? "/happy.png"
-      : "/happy-face.png"
-    : contextMatchState.player === "P1"
-    ? "/happy.png"
-    : "/happy-face.png";
-
-  const onClick = () => {
-    if (ref.current && !isSongPlaying) {
-      if (ref.current.volume >= 1) {
-        ref.current.volume = ref.current.volume * 0.5;
-      }
-      ref.current.play();
-      setIsSongPlaying(true);
-    } else if (ref.current && isSongPlaying) {
-      ref.current.pause();
-      setIsSongPlaying(false);
-    }
-  };
-
-  const onClickVolume = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (ref.current) {
-      if (e.currentTarget.dataset["volume"] === "-") {
-        ref.current.volume = ref.current.volume - ref.current.volume * 0.4;
-      } else if (e.currentTarget.dataset["volume"] === "+") {
-        if (ref.current.volume + ref.current.volume * 0.4 > 0.1) {
-          ref.current.volume = 0.5;
-        } else {
-          ref.current.volume = ref.current.volume + ref.current.volume * 0.4;
-        }
-      }
-    }
-  };
-
   useEffect(() => {
     if (!location.pathname.includes("local")) {
       setOnline(true);
     }
     setIsEmpty(false);
-    if (ref.current) {
-      ref.current.ended ? setIsSongPlaying(false) : "";
-    }
 
     if (ref2.current) {
       ref2.current.volume = 0.1;
@@ -137,8 +98,6 @@ const GameRoomPage = (): React.ReactElement => {
     contextHoverMarkState,
     gameRoomsState,
   ]);
-
-  console.log(gameRoomsState);
 
   const isTwoPlayersOnlineOrLocal = online ? isTwoPlayers && online : true;
 
