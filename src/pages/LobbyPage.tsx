@@ -20,7 +20,7 @@ const LobbyPage = (): React.ReactElement => {
       <header className="w-full flex justify-center items-center mt-4">
         <img
           src="/header.png"
-          className="w-[100%] sm:w-[60%] md:w-[45%]   -rotate-6 cursor-pointer"
+          className="w-[100%] sm:w-[60%] md:w-[50%] lg:w-[40%] -rotate-6 cursor-pointer"
           onClick={() => {
             setOnline(false);
             navigate("/lobby");
@@ -28,10 +28,10 @@ const LobbyPage = (): React.ReactElement => {
         />
       </header>
       {online ? (
-        <div className="flex justify-center items-center w-full h-full z-20">
+        <div className="flex justify-center items-center w-full h-full md:h-[90%]  z-20">
           {!isOneAvailableRoom && <TransitionalScreen />}
           <div
-            className={`grid grid-cols-1 sm:grid-cols-2 w-[70%]  gap-10 p-5 ${
+            className={`grid grid-cols-1 sm:grid-cols-2 w-[50%]   gap-5 ${
               isOneAvailableRoom ? "h-screen" : ""
             }  sm:h-auto`}
           >
@@ -46,7 +46,7 @@ const LobbyPage = (): React.ReactElement => {
             onClick={() => setOnline(true)}
             className=" bg-cyan-300/50  text-amber-300/80 hover:scale-105 w-full h-full cursor-pointer  text-center flex justify-center items-center p-2 rounded-2xl"
           >
-            <span className="text-3xl sm:text-5xl md:text-7xl">ONLINE</span>
+            <span className="text-5xl md:text-7xl">ONLINE</span>
           </button>
           <button
             onClick={() => {
@@ -55,7 +55,7 @@ const LobbyPage = (): React.ReactElement => {
             }}
             className=" bg-cyan-300/50  text-amber-300/80 hover:scale-105 w-full h-full cursor-pointer  text-center flex justify-center items-center p-2 rounded-2xl"
           >
-            <span className="text-3xl sm:text-5xl md:text-7xl">LOCAL</span>
+            <span className="text-5xl md:text-7xl">LOCAL</span>
           </button>
         </div>
       )}
