@@ -23,8 +23,6 @@ const VictoryBoard = ({
     : contextMatchState.player === "P2"
     ? "P1"
     : "P2";
-  const victoryAvatar =
-    victoryPlayer === "P1" ? "/happy.png" : "/happy-face.png";
 
   const onClick = () => {
     if (online) {

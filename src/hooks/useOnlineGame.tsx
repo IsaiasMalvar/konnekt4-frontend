@@ -51,7 +51,6 @@ export const useOnlineGame = (
             const gameRoomNotification: GameRoomNotification = JSON.parse(
               response.body
             );
-            console.log(gameRoomNotification.capacity);
             setIsTwoPlayers(gameRoomNotification.capacity > 1);
 
             setPlayer((prev) =>
@@ -120,7 +119,6 @@ export const useOnlineGame = (
   const sendMatchState = (matchState: MatchState) => {
     const stompClient = stompClientRef.current;
     if (stompClient && stompClient.connected) {
-      console.log(matchState);
       stompClient.publish({
         destination: `/app/game.move/${roomId}`,
         body: JSON.stringify(matchState),
