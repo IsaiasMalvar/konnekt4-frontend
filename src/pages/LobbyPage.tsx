@@ -28,7 +28,7 @@ const LobbyPage = (): React.ReactElement => {
         />
       </header>
       {online ? (
-        <div className="flex justify-center items-center w-full h-full md:h-[90%]  z-20">
+        <div className="flex mb-5 justify-center items-center w-full h-full md:h-[90%]  z-20">
           {!isOneAvailableRoom && <TransitionalScreen />}
           <div
             className={`grid grid-cols-1 sm:grid-cols-2 w-[50%]   gap-5 ${
