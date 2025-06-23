@@ -125,11 +125,12 @@ const BoardCell = ({
         <div
           className={`${
             markedCellDisplay || availableSpotAvatar
-          } w-full h-full relative z-0 flex justify-center items-center`}
+          } w-full h-full relative z-0 p-2 mb- flex flex-col justify-center items-center`}
         >
           {disabled && (
-            <div className="w-[20%] h-[20%] rounded-full bg-white" />
+            <div className="w-[15%] h-[15%] rounded-full bg-white mb-1 " />
           )}
+          {isP2 && <div className="w-[15%] h-[15%] rounded-full bg-white" />}
         </div>
       </button>
     </div>
