@@ -126,7 +126,7 @@ const GameRoomPage = (): React.ReactElement => {
         />
       )}
       {!victory && (
-        <div className="flex bg-black p-5 gap-4 justify-center w-[80%] sm:w-[80%] md:w-[40%] xl:w-[50%] items-center flex-col ">
+        <div className="flex bg-black p-5 gap-4 justify-center w-[80%] sm:w-[80%] md:w-[40%] xl:w-[50%] items-center flex-col relative">
           <span className="text-center sm:text-7xl xl:text-8xl text-white font-lucky text-5xl border-b-4 border-white border-">
             {online
               ? matchState.player === player

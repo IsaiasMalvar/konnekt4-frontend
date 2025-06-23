@@ -21,7 +21,7 @@ const TransitionalScreen = (): React.ReactElement => {
             <Link
               onClick={() => setOnline(false)}
               to="/"
-              className="active:scale-90 p-3 flex justify-center items-center transition-all duration-100 cursor-pointer bg-white w-[40%] "
+              className="active:scale-90 w-full p-3 flex justify-center items-center transition-all duration-100 cursor-pointer bg-white "
             >
               <span className="text-xl text-center sm:text-2xl">GO BACK</span>
             </Link>
@@ -50,7 +50,7 @@ const TransitionalScreen = (): React.ReactElement => {
             <Link
               onClick={() => setOnline(false)}
               to="/"
-              className="active:scale-90 p-3 flex justify-center items-center transition-all duration-100 cursor-pointer bg-white w-[40%] "
+              className="active:scale-90 p-3 flex justify-center items-center transition-all duration-100 cursor-pointer bg-white w-[100%] "
             >
               <span className="text-xl text-center sm:text-2xl">GO BACK</span>
             </Link>
