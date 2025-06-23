@@ -20,7 +20,7 @@ const LobbyPage = (): React.ReactElement => {
       <header className="w-full flex justify-center items-center mt-4">
         <img
           src="/header.png"
-          className="w-[100%] sm:w-[60%] md:w-[50%] xl:w-[55%]  -rotate-6 cursor-pointer"
+          className="w-[100%] sm:w-[60%] md:w-[45%]   -rotate-6 cursor-pointer"
           onClick={() => {
             setOnline(false);
             navigate("/lobby");
@@ -41,10 +41,10 @@ const LobbyPage = (): React.ReactElement => {
           </div>
         </div>
       ) : (
-        <div className="w-[70%] sm:w-[40%] z-30 flex-col  rounded-2xl h-[40%] p-2 gap-2 text-orange-500 text-xl font-lucky bg-white/30 backdrop-blur-2xl flex justify-around items-center">
+        <div className="w-[70%] sm:w-[40%] z-30 flex-col  rounded-2xl h-[40%] p-2 gap-2 text-orange-500 text-xl font-lucky  flex justify-around items-center">
           <button
             onClick={() => setOnline(true)}
-            className="border border-white hover:bg-amber-400/50 w-full h-full cursor-pointer  text-center flex justify-center items-center p-2 rounded-2xl"
+            className=" bg-cyan-300/50  text-amber-300/80 hover:scale-105 w-full h-full cursor-pointer  text-center flex justify-center items-center p-2 rounded-2xl"
           >
             <span className="text-3xl sm:text-5xl md:text-7xl">ONLINE</span>
           </button>
@@ -53,7 +53,7 @@ const LobbyPage = (): React.ReactElement => {
               setOnline(false);
               navigate("/room/local");
             }}
-            className="border border-white hover:bg-amber-400/50 w-full h-full cursor-pointer  text-center flex justify-center items-center p-2 rounded-2xl"
+            className=" bg-cyan-300/50  text-amber-300/80 hover:scale-105 w-full h-full cursor-pointer  text-center flex justify-center items-center p-2 rounded-2xl"
           >
             <span className="text-3xl sm:text-5xl md:text-7xl">LOCAL</span>
           </button>

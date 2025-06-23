@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Cell, MatchState, PlayableMark } from "../types/types";
 import { getAvailableMarks } from "../utilities/utilities";
 import { context } from "../contexts/useMatchContext";
@@ -29,6 +29,7 @@ const BoardCell = ({
     hoverMarkState: contextHoverMarkState,
   } = context();
   const { markRecord, player: player } = matchState;
+  const [width, setWidth] = useState<number>(window.innerWidth);
 
   const ref = useRef<HTMLAudioElement>(null);
   const mark: PlayableMark = `P1${row}${column}`;
@@ -55,6 +56,8 @@ const BoardCell = ({
     : contextHoverMarkState === mark || contextHoverMarkState === markP2;
   const availableSpotAvatar = isAvailable ? "/emoji.png" : "";
   const isTurn = online ? propPlayer === matchState.player : matchState.player;
+  const isDesktopScreen = width > 768;
+  console.log(isDesktopScreen);
 
   const onClick = () => {
     console.log(contextMatchState.player);
@@ -74,11 +77,11 @@ const BoardCell = ({
       }));
     }
 
-    if (online) {
+    if (online && isDesktopScreen) {
       setTimeout(() => {
         setHoverMarkState(availableMark[1]);
       }, 0);
-    } else if (!online) {
+    } else if (!online && isDesktopScreen) {
       setTimeout(() => {
         setContextHoverMarkState(availableMark[1]);
       }, 0);
@@ -86,12 +89,19 @@ const BoardCell = ({
   };
 
   const onHover = () => {
-    if (online) {
+    if (online && isDesktopScreen) {
       setHoverMarkState(availableMark[0]);
-    } else if (!online) {
+    } else if (!online && isDesktopScreen) {
       setContextHoverMarkState(availableMark[0]);
     }
   };
+
+  useEffect(() => {
+    console.log(window.innerWidth);
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
 
   return (
     <div className={`flex justify-center items-center `}>
@@ -104,7 +114,13 @@ const BoardCell = ({
           online ? (isTurn ? "" : "cursor-not-allowed") : ""
         }`}
         disabled={disabled || !isTurn}
-        onMouseLeave={() => setHoverMarkState("P00")}
+        onMouseLeave={() => {
+          if (online) {
+            setHoverMarkState("P00");
+          } else if (!online) {
+            setContextHoverMarkState("P00");
+          }
+        }}
       >
         <img
           src={availableSpotAvatar || markedCellDisplay}
