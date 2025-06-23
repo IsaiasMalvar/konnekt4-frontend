@@ -13,6 +13,8 @@ import { Link, useLocation, useParams } from "react-router";
 import { useOnlineGame } from "../hooks/useOnlineGame";
 import { context } from "../contexts/useMatchContext";
 import TransitionalScreen from "../components/TransitionalScreen";
+import RandomTiledBackground from "../components/RandomTiledBackground";
+import HomeLogo from "../components/HomeLogo";
 
 const GameRoomPage = (): React.ReactElement => {
   const {
@@ -141,45 +143,11 @@ const GameRoomPage = (): React.ReactElement => {
   const isTwoPlayersOnlineOrLocal = online ? isTwoPlayers && online : true;
 
   return (
-    <div className="h-screen flex flex-col justify-around items-center beach-bg gap-2 relative overflow-hidden ">
+    <div className="h-screen flex p-5  justify-around items-center gap-5 relative overflow-hidden flex-col md:flex-row">
+      <RandomTiledBackground />
       {(!isTwoPlayersOnlineOrLocal || isEmpty) && <TransitionalScreen />}
       <audio src="/yay.mp3" ref={ref2} />
       <audio src="/M-V.mp3" ref={ref} />
-
-      <div className="flex w-[60%] md:w-[36%] xl:w-[35%] justify-between gap-2">
-        <div
-          className="text-3xl cursor-pointer w-[2rem] h-[2rem] sm:w-[3rem] sm:h-[3rem] text-center rounded-full border-2 active:scale-90"
-          data-volume="-"
-          onClick={onClickVolume}
-        >
-          <img src="/volume-down.png" />
-        </div>
-        <div className="flex gap-10">
-          <div className="text-3xl cursor-pointer" onClick={onClick}>
-            {!isSongPlaying ? "🎵" : "⏸️"}
-          </div>
-          <Link
-            to="/lobby"
-            className="text-3xl cursor-pointer"
-            onClick={() =>
-              setContextMatchState({
-                markRecord: [],
-                player: "P1",
-              })
-            }
-          >
-            {"🏠"}
-          </Link>
-        </div>
-
-        <div
-          className="text-3xl cursor-pointer w-[2rem] h-[2rem] sm:w-[3rem] sm:h-[3rem] text-center rounded-full border-2 active:scale-90"
-          data-volume="+"
-          onClick={onClickVolume}
-        >
-          <img src="/volume-up.png" alt="" />
-        </div>
-      </div>
 
       {!victory ? (
         <Board
@@ -199,20 +167,28 @@ const GameRoomPage = (): React.ReactElement => {
         />
       )}
       {!victory && (
-        <div className="flex gap-2 justify-between w-[80%] sm:w-[50%] md:w-[40%] xl:w-[30%] items-center flex-col sm:flex-row">
-          <span className="sm:text-4xl font-lucky text-3xl">
+        <div className="flex bg-black p-5 gap-4 justify-center w-[80%] sm:w-[80%] md:w-[40%] xl:w-[50%] items-center flex-col ">
+          <span className="text-center sm:text-7xl xl:text-8xl text-white font-lucky text-5xl border-b-4 border-white border-">
             {online
               ? matchState.player === player
-                ? "Your turn!"
-                : `${matchState.player}  's TURN!`
+                ? "YOUR TURN"
+                : `${matchState.player}  's TURN`
               : contextMatchState.player === "P1"
-              ? `P1's TURN!`
-              : "P2's TURN!"}
+              ? `P1's TURN`
+              : "P2's TURN"}
           </span>
-          <img
-            src={currentPlayerAvatar}
-            className="w-[30%] sm:w-[25%] xl:w-[20%] md:w-[15%] mb-1.5"
-          ></img>
+          <Link
+            to="/lobby"
+            className="text-3xl cursor-pointer"
+            onClick={() =>
+              setContextMatchState({
+                markRecord: [],
+                player: "P1",
+              })
+            }
+          >
+            <HomeLogo />
+          </Link>
         </div>
       )}
     </div>

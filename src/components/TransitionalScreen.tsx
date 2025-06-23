@@ -11,39 +11,48 @@ const TransitionalScreen = (): React.ReactElement => {
   const showConnecting = availableRooms.length < 1 && isLobby;
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-white/30 backdrop-blur-2xl flex flex-col justify-center items-center">
-      <div className="w-1/2 h-1/2 p-3 bg-orange-200/15 backdrop-blur-2xl rounded-2xl font-lucky text-center flex flex-col justify-center items-center">
+    <div className="absolute top-0 left-0 w-full z-50 h-full bg-white/30 backdrop-blur-2xl flex flex-col justify-center items-center">
+      <div className="w-1/2 h-1/2 p-3  backdrop-blur-2xl rounded-2xl font-lucky text-center flex flex-col justify-center items-center">
         {showWaiting && (
-          <span className="text-orange-700/55 text-3xl sm:text-5xl animate-bounce">
-            WAITING FOR A RIVAL!
-          </span>
+          <div className="flex flex-col justify-center items-center gap-10 ">
+            <span className=" text-xl sm:text-5xl animate-pulse bg-black text-white p-4">
+              WAITING FOR A RIVAL...
+            </span>
+            <Link
+              onClick={() => setOnline(false)}
+              to="/"
+              className="active:scale-90 p-3 flex justify-center items-center transition-all duration-100 cursor-pointer bg-white w-[40%] "
+            >
+              <span className="text-xl text-center sm:text-2xl">GO BACK</span>
+            </Link>
+          </div>
         )}
 
         {showDisconnected && (
           <div className="flex flex-col justify-center items-center gap-10">
-            <span className="text-orange-700/55 text-3xl sm:text-5xl">
-              YOUR RIVAL HAS LEFT!
+            <span className=" text-3xl sm:text-5xl  bg-black text-white p-4">
+              YOUR RIVAL HAS LEFT
             </span>
             <Link
               to="/"
-              className="active:scale-90 hover:bg-orange-700 hover:text-amber-200 flex justify-center items-center transition-all duration-100 cursor-pointer bg-amber-200 w-[40%] rounded-4xl border-orange-700 p-5 font-bold text-orange-700"
+              className="active:scale-90 p-5 w-[90%] flex justify-center items-center transition-all duration-100 cursor-pointer bg-white  "
             >
-              <span className="text-xl text-center sm:text-2xl">GO BACK!</span>
+              <span className="text-xl text-center sm:text-2xl ">GO BACK</span>
             </Link>
           </div>
         )}
 
         {showConnecting && (
-          <div className="flex flex-col justify-center items-center gap-10">
-            <span className="text-orange-700/55 text-2xl sm:text-5xl animate-pulse">
+          <div className="flex flex-col justify-center items-center gap-10 ">
+            <span className=" text-xl sm:text-5xl animate-pulse bg-black text-white p-4">
               CONNECTING TO SERVER...
             </span>
             <Link
               onClick={() => setOnline(false)}
               to="/"
-              className="active:scale-90 hover:bg-orange-700 hover:text-amber-200 flex justify-center items-center transition-all duration-100 cursor-pointer bg-amber-200 w-[50%] sm:w-[40%] rounded-4xl border-orange-700 p-5 font-bold text-orange-700"
+              className="active:scale-90 p-3 flex justify-center items-center transition-all duration-100 cursor-pointer bg-white w-[40%] "
             >
-              <span className="text-xl text-center sm:text-2xl">GO BACK!</span>
+              <span className="text-xl text-center sm:text-2xl">GO BACK</span>
             </Link>
           </div>
         )}

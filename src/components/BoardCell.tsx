@@ -49,12 +49,12 @@ const BoardCell = ({
         contextMatchState.markRecord
       );
   const disabled = isP1 || isP2;
-  const playerAvatar = isP1 ? "/happy.png" : isP2 ? "/happy-face.png" : "";
-  const markedCellDisplay = disabled ? playerAvatar : "/base.png";
+  const playerAvatar = isP1 ? "bg-black" : isP2 ? "bg-cyan-950" : "";
+  const markedCellDisplay = disabled ? playerAvatar : "";
   const isAvailable = online
     ? hoverMarkState === mark || hoverMarkState === markP2
     : contextHoverMarkState === mark || contextHoverMarkState === markP2;
-  const availableSpotAvatar = isAvailable ? "/emoji.png" : "";
+  const availableSpotAvatar = isAvailable ? "bg-gray-500" : "";
   const isTurn = online ? propPlayer === matchState.player : matchState.player;
   const isDesktopScreen = width > 768;
   console.log(isDesktopScreen);
@@ -109,7 +109,7 @@ const BoardCell = ({
       <button
         onMouseEnter={onHover}
         onClick={onClick}
-        className={`rounded-full bg-amber-200  w-[90%] h-[90%] shadow-2xs
+        className={` bg-white  w-[90%] h-[90%] shadow-2xs
         disabled:cursor-not-allowed cursor-pointer ${
           online ? (isTurn ? "" : "cursor-not-allowed") : ""
         }`}
@@ -122,10 +122,15 @@ const BoardCell = ({
           }
         }}
       >
-        <img
-          src={availableSpotAvatar || markedCellDisplay}
-          className="object-cover"
-        ></img>
+        <div
+          className={`${
+            markedCellDisplay || availableSpotAvatar
+          } w-full h-full relative z-0 flex justify-center items-center`}
+        >
+          {disabled && (
+            <div className="w-[20%] h-[20%] rounded-full bg-white" />
+          )}
+        </div>
       </button>
     </div>
   );
