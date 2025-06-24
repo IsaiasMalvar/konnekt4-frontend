@@ -2,7 +2,6 @@ import { Link } from "react-router";
 import { context } from "../contexts/useMatchContext";
 import type { MatchState, Player } from "../types/types";
 import HomeLogo from "./HomeLogo";
-import { use, useEffect } from "react";
 
 interface VictoryProps {
   matchState: MatchState;
