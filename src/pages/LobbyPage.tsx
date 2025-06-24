@@ -4,10 +4,25 @@ import { context } from "../contexts/useMatchContext";
 import { useJoinServer } from "../hooks/useJoinServer";
 import TransitionalScreen from "../components/TransitionalScreen";
 import RandomTiledBackground from "../components/RandomTiledBackground";
+import { useEffect } from "react";
 
 const LobbyPage = (): React.ReactElement => {
-  const { availableRooms, setOnline, online } = context();
+  const {
+    availableRooms,
+    setOnline,
+    online,
+    setMatchState: setContextMatchState,
+  } = context();
+
+  useEffect(() => {
+    setContextMatchState({
+      markRecord: [],
+      player: "P1",
+    });
+  }, []);
+
   useJoinServer();
+
   const navigate = useNavigate();
 
   const isOneAvailableRoom = availableRooms.length > 1;
