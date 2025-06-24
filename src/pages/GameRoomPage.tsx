@@ -73,8 +73,6 @@ const GameRoomPage = (): React.ReactElement => {
     row,
   };
 
-  console.log(contextMatchState.player);
-
   useEffect(() => {
     if (!location.pathname.includes("local")) {
       setOnline(true);
@@ -104,7 +102,6 @@ const GameRoomPage = (): React.ReactElement => {
   const isTwoPlayersOnlineOrLocal = online ? isTwoPlayers && online : true;
   const isCurrentPlayer1 =
     (online && matchState.player === "P1") || contextMatchState.player === "P1";
-  console.log(isCurrentPlayer1);
 
   return (
     <div className="h-screen flex p-5  justify-around items-center gap-5 relative overflow-hidden flex-col ">
