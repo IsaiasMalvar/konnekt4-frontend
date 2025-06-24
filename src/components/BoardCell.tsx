@@ -97,7 +97,6 @@ const BoardCell = ({
   };
 
   useEffect(() => {
-    console.log(window.innerWidth);
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -125,7 +124,7 @@ const BoardCell = ({
         <div
           className={`${
             markedCellDisplay || availableSpotAvatar
-          } w-full h-full relative z-0 p-2 mb- flex flex-col justify-center items-center`}
+          } w-full h-full relative z-0 p-2 mb- flex flex-col justify-center items-center inner-border`}
         >
           {disabled && (
             <div className="w-[15%] h-[15%] rounded-full bg-white mb-1 " />
