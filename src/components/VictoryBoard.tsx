@@ -1,5 +1,7 @@
+import { Link } from "react-router";
 import { context } from "../contexts/useMatchContext";
 import type { MatchState, Player } from "../types/types";
+import HomeLogo from "./HomeLogo";
 
 interface VictoryProps {
   matchState: MatchState;
@@ -53,12 +55,26 @@ const VictoryBoard = ({
       </h1>
 
       <div
-        className=" bg-black sm:w-[50%] w-[100%]  z-10 flex justify-center items-center"
+        className=" bg-black sm:w-[50%] w-[100%]  z-10 flex justify-around items-center"
         onClick={onClick}
       >
         <button className="active:scale-90 text-xl text-center sm:text-2xl text-white border-4 border-white p-5 cursor-pointer">
-          REMATCH
+          <div className="hover:scale-105 ">REMATCH</div>
         </button>
+        <div className="active:scale-90 text-xl text-center sm:text-2xl text-white border-4 border-white p-5 cursor-pointer">
+          <Link
+            to="/lobby"
+            className="text-3xl cursor-pointer"
+            onClick={() =>
+              setContextMatchState({
+                markRecord: [],
+                player: "P1",
+              })
+            }
+          >
+            <HomeLogo />
+          </Link>
+        </div>
       </div>
     </div>
   );

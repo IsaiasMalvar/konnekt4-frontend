@@ -8,6 +8,7 @@ const HomeLogo = (): React.ReactElement => {
       viewBox="0 0 495.398 495.398"
       width={"50"}
       height={"50"}
+      className="hover:scale-105 size-10"
     >
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
       <g

@@ -73,6 +73,8 @@ const GameRoomPage = (): React.ReactElement => {
     row,
   };
 
+  console.log(contextMatchState.player);
+
   useEffect(() => {
     if (!location.pathname.includes("local")) {
       setOnline(true);
@@ -100,9 +102,12 @@ const GameRoomPage = (): React.ReactElement => {
   ]);
 
   const isTwoPlayersOnlineOrLocal = online ? isTwoPlayers && online : true;
+  const isCurrentPlayer1 =
+    (online && matchState.player === "P1") || contextMatchState.player === "P1";
+  console.log(isCurrentPlayer1);
 
   return (
-    <div className="h-screen flex p-5  justify-around items-center gap-5 relative overflow-hidden flex-col md:flex-row">
+    <div className="h-screen flex p-5  justify-around items-center gap-5 relative overflow-hidden flex-col ">
       <RandomTiledBackground />
       {(!isTwoPlayersOnlineOrLocal || isEmpty) && <TransitionalScreen />}
       <audio src="/yay.mp3" ref={ref2} />
@@ -126,16 +131,35 @@ const GameRoomPage = (): React.ReactElement => {
         />
       )}
       {!victory && (
-        <div className="flex bg-black p-5 gap-4 justify-center w-[80%] sm:w-[80%] md:w-[40%] xl:w-[50%] items-center flex-col relative">
-          <span className="text-center sm:text-7xl xl:text-8xl text-white font-lucky text-5xl border-b-4 border-white border-">
-            {online
-              ? matchState.player === player
-                ? "YOUR TURN"
-                : `${matchState.player}  's TURN`
-              : contextMatchState.player === "P1"
-              ? `P1's TURN`
-              : "P2's TURN"}
-          </span>
+        <div className="inner-border-white flex bg-black p-5 gap-4  w-[80%] sm:w-[80%] md:w-[40%] items-center xl:flex-row flex-col justify-between relative">
+          <div className="flex justify-between gap-6 items-center">
+            <span className="text-center sm:text-7xl md:text-4xl text-white font-lucky text-3xl ">
+              {online
+                ? matchState.player === player
+                  ? "YOUR TURN"
+                  : `${matchState.player}  's TURN`
+                : contextMatchState.player === "P1"
+                ? `P1's TURN`
+                : "P2's TURN"}
+            </span>
+            <div
+              className={`
+           aspect-square w-16 h-16 relative  flex flex-col justify-center items-center inner-border-white ${
+             isCurrentPlayer1 ? "bg-black" : "bg-cyan-950"
+           }`}
+            >
+              {(matchState.player === "P1" ||
+                contextMatchState.player === "P1") && (
+                <div
+                  className={`w-[15%] h-[15%] rounded-full bg-white mb-1 `}
+                />
+              )}
+              {(matchState.player === "P2" ||
+                contextMatchState.player === "P2") && (
+                <div className="w-[15%] h-[15%] rounded-full bg-white" />
+              )}
+            </div>
+          </div>
           <Link
             to="/lobby"
             className="text-3xl cursor-pointer"

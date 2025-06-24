@@ -15,7 +15,7 @@ const LobbyRoomCard = ({ id }: LobbyRoomCardProps): React.ReactElement => {
       onClick={() => onClick(id)}
     >
       <span className=" font-lucky text-3xl sm:text-4xl md:text-5xl lg:text-6xl p-2 uppercase">{`ROOM ${id}`}</span>
-      <span className="font-mono font-extrabold text-white text-xl sm:text-2xl uppercase">
+      <span className="font-mono font-extrabold text-white text-xs sm:text-2xl uppercase">
         Available
       </span>
     </div>
