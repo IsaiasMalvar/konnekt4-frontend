@@ -51,8 +51,7 @@ const GameRoomPage = (): React.ReactElement => {
   const [victory, setVictory] = useState<boolean>(false);
   const [hoverMarkState, setHoverMarkState] = useState<PlayableMark>("P00");
 
-  const ref = useRef<HTMLAudioElement>(null);
-  const ref2 = useRef<HTMLAudioElement>(null);
+  const victorySoundRef = useRef<HTMLAudioElement>(null);
 
   const lastMark: PlayableMark = online
     ? matchState.markRecord[matchState.markRecord.length - 1] ?? "P00"
@@ -79,8 +78,8 @@ const GameRoomPage = (): React.ReactElement => {
     }
     setIsEmpty(false);
 
-    if (ref2.current) {
-      ref2.current.volume = 0.1;
+    if (victorySoundRef.current) {
+      victorySoundRef.current.volume = 0.1;
     }
     const result = online
       ? VictoryValidator.checkVictory(reviewCell, matchState.markRecord)
@@ -88,8 +87,9 @@ const GameRoomPage = (): React.ReactElement => {
 
     setVictory(result);
     if (result) {
-      if (ref2.current) {
-        ref2.current.play();
+      console.log("true");
+      if (victorySoundRef.current) {
+        victorySoundRef.current.play();
       }
     }
   }, [
@@ -107,8 +107,7 @@ const GameRoomPage = (): React.ReactElement => {
     <div className="h-screen flex p-5  justify-around items-center gap-5 relative overflow-hidden flex-col ">
       <RandomTiledBackground />
       {(!isTwoPlayersOnlineOrLocal || isEmpty) && <TransitionalScreen />}
-      <audio src="/yay.mp3" ref={ref2} />
-      <audio src="/M-V.mp3" ref={ref} />
+      <audio src="/yay.mp3" ref={victorySoundRef} />
 
       {!victory ? (
         <Board
