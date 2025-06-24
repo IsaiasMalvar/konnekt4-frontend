@@ -1,10 +1,10 @@
 const getRandomSize = () => {
-  const width = Math.floor(Math.random() * 4 + 1) * 64; // 64 to 256px
+  const width = Math.floor(Math.random() * 4 + 1) * 64;
   const height = Math.floor(Math.random() * 4 + 1) * 64;
   return { width, height };
 };
 
-const tiles = Array.from({ length: 50 }, (_, i) => {
+const tiles = Array.from({ length: 100 }, (_, i) => {
   const { width, height } = getRandomSize();
   return (
     <div

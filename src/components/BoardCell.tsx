@@ -57,10 +57,8 @@ const BoardCell = ({
   const availableSpotAvatar = isAvailable ? "bg-gray-500" : "";
   const isTurn = online ? propPlayer === matchState.player : matchState.player;
   const isDesktopScreen = width > 768;
-  console.log(isDesktopScreen);
 
   const onClick = () => {
-    console.log(contextMatchState.player);
     if (ref.current) {
       ref.current.play();
     }
