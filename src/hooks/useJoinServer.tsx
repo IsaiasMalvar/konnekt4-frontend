@@ -15,20 +15,14 @@ export const useJoinServer = () => {
       const stompClient = new Client({
         webSocketFactory: () => socket,
         reconnectDelay: 5000,
-        debug: console.log,
         onConnect: () => {
           stompClient.subscribe(`/topic/connected`, (response) => {
-            console.log(response);
             const serverRooms: number[] = JSON.parse(response.body);
             setAvailableRooms([...serverRooms]);
           });
           stompClient.publish({
             destination: "/app/availability",
           });
-        },
-        onStompError: (frame) => {
-          console.error("STOMP error:", frame.headers["message"]);
-          console.error(frame.body);
         },
       });
 
